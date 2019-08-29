@@ -1,0 +1,61 @@
+import java.lang.*;
+import java.util.*;
+
+class Node{
+int data;
+Node next;
+Node(int data){
+this.data=data;
+
+}
+static Node deleteNode(Node start){
+boolean flag=false;
+if(start.data<start.next.data){
+start=start.next;
+flag=true;
+return start;
+}
+for(Node p=start.next ;p.next!= null ;p=p.next){
+if(p.next.data<p.next.next.data){
+p.next=p.next.next;
+flag=true;
+return start;
+} 
+
+}
+if(flag==false){
+Node p=start;
+while(p.next.next!=null){
+p=p.next;
+}
+p.next=null;
+}
+return start;
+}
+}
+
+class TestClass {
+public static void main(String args[] ) throws Exception {
+Scanner input=new Scanner(System.in);
+int testCase=input.nextInt();
+while(testCase!=0){
+int N=input.nextInt();
+int K=input.nextInt();
+Node start=new Node(input.nextInt());
+Node p=start;
+for(int i=1;i<N;i++){
+p.next=new Node(input.nextInt());
+p=p.next;
+}
+while(K!=0){
+start=Node.deleteNode(start);
+K--
+}
+for(Node p1=start;p1!=null;p1=p1.next){
+System.out.print(p1.data+" ");
+}
+System.out.println();
+testCase--; 
+}
+}
+}
